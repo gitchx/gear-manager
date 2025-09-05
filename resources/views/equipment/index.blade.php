@@ -3,11 +3,11 @@
 @section('content')
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
-    <h1 class="text-2xl font-bold mb-4">機材一覧</h1>
+    <h1 class="text-2xl font-bold mb-4 mt-3">機材一覧</h1>
 
     {{-- 新規作成ボタン --}}
     <div class="mb-4">
-        <button class="btn btn-primary w-full sm:w-auto" onclick="location.href='{{ route('equipment.create') }}'">
+        <button class="btn bg-gray-200 w-full sm:w-auto text-gray-700" onclick="location.href='{{ route('equipment.create') }}'">
             新規作成
         </button>
     </div>
@@ -33,9 +33,8 @@
                     <td>{{ $item->brand }}</td>
                     <td>{{ $item->name }}</td>
                     <td class="flex flex-col gap-2">
-                        <button class="btn btn-sm btn-ghost toggle-details" data-id="{{ $item->id }}">詳細</button>
-                        <a class="btn btn-sm btn-secondary" href="{{ route('equipment.edit', $item->id) }}">編集</a>
-                        <button type="button" class="btn btn-sm btn-error ajax-delete" data-id="{{ $item->id }}">削除</button>
+                        <button class="btn btn-sm btn-ghost toggle-details bg-gray-300" data-id="{{ $item->id }}">詳細</button>
+                        <a class="btn btn-sm bg-gray-400 text-white" href="{{ route('equipment.edit', $item->id) }}">編集</a>
                     </td>
                 </tr>
                 <!-- スマホ用折りたたみ詳細行 -->
@@ -46,6 +45,9 @@
                             <div><strong>価格:</strong> {{ $item->price }}</div>
                             <div><strong>状態:</strong> {{ $item->status }}</div>
                             <div class="col-span-2"><strong>メモ:</strong> {{ $item->notes }}</div>
+                        </div>
+                        <div class="col-span-2 text-right">
+                            <button type="button" class="btn btn-sm btn-error ajax-delete text-white" data-id="{{ $item->id }}">削除</button>
                         </div>
                     </td>
                 </tr>
@@ -59,8 +61,8 @@
                     <td>{{ $item->status }}</td>
                     <td>{{ $item->notes }}</td>
                     <td class="flex items-center gap-2">
-                        <a class="btn btn-sm btn-secondary" href="{{ route('equipment.edit', $item->id) }}">編集</a>
-                        <button type="button" class="btn btn-sm btn-error ajax-delete" data-id="{{ $item->id }}">削除</button>
+                        <a class="btn btn-sm bg-gray-400 text-white" href="{{ route('equipment.edit', $item->id) }}">編集</a>
+                        <button type="button" class="btn btn-sm btn-error ajax-delete text-white" data-id="{{ $item->id }}">削除</button>
                     </td>
                 </tr>
                 @endforeach
