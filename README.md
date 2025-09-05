@@ -19,7 +19,7 @@ http://localhost:8000/
 clone https://github.com/gitchx/gear-manager
 ~~~
 
-## laravelサーバを立ち上げる
+## Laravelサーバを立ち上げる
 ~~~
 php artisan serve
 ~~~
@@ -39,43 +39,26 @@ clone https://github.com/gitchx/gear-manager
 ~~~
 
 ## podman-compose build を実行する
-Laravelを実行する準備と、ViteでTailwind CSSがビルドされたりします。
+Laravelを実行する準備と、ViteでTailwind CSSがビルドされます。
 ~~~
 podman-compose build
 ~~~
 
-## .envを準備する（開発環境で生成）
-ローカルの開発環境で準備することを想定しています。
+## .envを準備する
 ~~~
-php artisan key:generate
+podman-compose exec app php artisan key:generate
 ~~~
-を実行する必要がありますが、Dockerfileはコンテナを軽量化するように作っているため、<br>ビルド後のファイルではartisanを実行できません。
 
 ## SQLiteデータベースを準備する（開発環境でマイクレーションする）
-ビルド後のDocker環境にはartisanコマンドが入っていません。<br>
-<br>
-<br>
-<br>
-
----
-
-### ローカルでの作業
-ルートディレクトリで
+空のデータベースを作る。
 ~~~
 touch ./database/database.sqlite
 ~~~
-して、空のデータベースを作ります。
 
+データベースにマイグレーションでテーブルを作成する。
 ~~~
-php artisan migrate
+podman-compose exec app php artisan migrate
 ~~~
-を実行して、マイグレーションされた database/database.sqlite を作ります。
-
-本番環境にdatabase.sqliteをコピーします。
-
----
-<br>
-<br>
 
 ## podman-composeを実行する
 ~~~
@@ -86,3 +69,12 @@ podman-compose up -d
 ## nginxでポート8000にルーティングする
 
 nginxで 80 -> 8000 にルーティングする
+
+<br>
+
+# メモ
+## Podmanコンテナに入って作業したいとき
+~~~
+podman-compose exec app bash
+~~~
+apt install nano が必要 (debianベースのコンテナ)
