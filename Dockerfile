@@ -1,16 +1,8 @@
-# PHP 8.2 + Composer
+# PHP 8.2 FPM
 FROM php:8.2-fpm
 
-# 必要パッケージと Node.js
-RUN apt-get update && apt-get install -y \
-    libsqlite3-dev \
-    unzip \
-    git \
-    curl \
-    zip \
-    gnupg2 \
-    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs \
+# 必要な PHP 拡張
+RUN apt-get update && apt-get install -y libsqlite3-dev unzip git zip \
     && docker-php-ext-install pdo pdo_sqlite
 
 # Composer インストール済みイメージなら不要
@@ -19,15 +11,11 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # 作業ディレクトリ
 WORKDIR /var/www/html
 
-# アプリコピー
+# アプリコピー（事前に public/build は生成しておく）
 COPY . .
 
-# npm と Composer の依存をクリーンインストール
-RUN rm -rf node_modules package-lock.json && npm install
+# Composer install（本番用）
 RUN composer install --no-dev --optimize-autoloader
-
-# TailwindCSS / Vite ビルド
-RUN npm run build
 
 # 権限設定
 RUN chown -R www-data:www-data /var/www/html \
