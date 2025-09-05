@@ -1,3 +1,6 @@
+# Composer のステージ
+FROM composer:2 AS composer
+
 # PHP 8.2 FPM
 FROM php:8.2-fpm
 
