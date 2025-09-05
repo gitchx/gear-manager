@@ -85,6 +85,9 @@ class EquipmentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $equipment = Equipment::findOrFail($id);
+        $equipment->delete();
+
+        return response()->json(['message' => 'Deleted'], 200);
     }
 }
