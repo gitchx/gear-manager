@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Create Equipment</h1>
+    <h1>機材をリストに追加</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
