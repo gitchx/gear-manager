@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4 py-8">
+<div class="max-w-2xl mx-auto p-6 bg-base-100 rounded-lg shadow-md">
     <h1 class="text-2xl font-bold mb-6">機材をリストに追加</h1>
 
     @if ($errors->any())
