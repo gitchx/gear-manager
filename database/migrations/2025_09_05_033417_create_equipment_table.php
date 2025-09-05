@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('brand')->nullable();
             $table->date('purchased_at')->nullable();
             $table->integer('price')->nullable();
-            $table->string('status')->default('使用中');
+            $table->string('status')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });

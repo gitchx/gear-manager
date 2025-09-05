@@ -33,6 +33,11 @@ class EquipmentController extends Controller
         // バリデーション
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'brand' => 'nullable|string|max:255',
+            'purchased_at' => 'nullable|date',
+            'price' => 'nullable|numeric',
+            'status' => 'nullable|string|max:255',
+            'notes' => 'nullable|string',
         ]);
 
         // データ保存

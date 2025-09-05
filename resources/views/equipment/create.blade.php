@@ -28,14 +28,14 @@
             <label class="label" for="brand">
                 <span class="label-text">Brand</span>
             </label>
-            <input type="text" id="brand" name="brand" value="{{ old('brand') }}" placeholder="メーカー名" class="input input-bordered w-full" required>
+            <input type="text" id="brand" name="brand" value="{{ old('brand') }}" placeholder="メーカー名" class="input input-bordered w-full">
         </div>
 
         <div class="form-control w-full">
             <label class="label" for="purchased_at">
                 <span class="label-text">Purchased At</span>
             </label>
-            <input type="date" id="purchased_at" name="purchased_at" value="{{ old('purchased_at') }}" class="input input-bordered w-full" required>
+            <input type="date" id="purchased_at" name="purchased_at" value="{{ old('purchased_at') }}" class="input input-bordered w-full">
         </div>
 
         <div class="form-control w-full">
