@@ -38,6 +38,12 @@ Rocky Linux 9.6 (CentOS) でテストしています。<br>
 clone https://github.com/gitchx/gear-manager
 ~~~
 
+## podman-compose build を実行する
+Laravelを実行する準備と、ViteでTailwind CSSがビルドされたりします。
+~~~
+podman-compose build
+~~~
+
 ## .envを準備する（開発環境で生成）
 ローカルの開発環境で準備することを想定しています。
 ~~~
@@ -45,16 +51,37 @@ php artisan key:generate
 ~~~
 を実行する必要がありますが、Dockerfileはコンテナを軽量化するように作っているため、<br>ビルド後のファイルではartisanを実行できません。
 
-## podman-compose build を実行する
-Laravelを実行する準備と、ViteでTailwind CSSがビルドされたりします。
+## SQLiteデータベースを準備する（開発環境でマイクレーションする）
+ビルド後のDocker環境にはartisanコマンドが入っていません。<br>
+<br>
+<br>
+<br>
+
+---
+
+### ローカルでの作業
+ルートディレクトリで
 ~~~
-podman-compose build
+touch ./database/database.sqlite
 ~~~
+して、空のデータベースを作ります。
+
+~~~
+php artisan migrate
+~~~
+を実行して、マイグレーションされた database/database.sqlite を作ります。
+
+本番環境にdatabase.sqliteをコピーします。
+
+---
+<br>
+<br>
 
 ## podman-composeを実行する
 ~~~
 podman-compose up -d
 ~~~
+
 
 ## nginxでポート8000にルーティングする
 
