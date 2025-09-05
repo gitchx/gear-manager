@@ -33,9 +33,6 @@ class EquipmentController extends Controller
         // バリデーション
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'type' => 'required|string|max:255',
-            'price' => 'nullable|numeric',
-            'description' => 'nullable|string',
         ]);
 
         // データ保存
@@ -56,18 +53,27 @@ class EquipmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $equipment = Equipment::findOrFail($id);
+        return view('equipment.edit', compact('equipment'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $equipment = Equipment::findOrFail($id);
+        $equipment->update($request->all());
+
+        return redirect()->route('equipment.index')->with('success', '更新しました');
     }
+
 
     /**
      * Remove the specified resource from storage.

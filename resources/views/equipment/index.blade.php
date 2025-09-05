@@ -22,6 +22,9 @@
         <td>{{ $item->price }}</td>
         <td>{{ $item->status }}</td>
         <td>{{ $item->notes }}</td>
+        <td>
+            <a href="{{ route('equipment.edit', $item->id) }}">編集</a>
+        </td>
     </tr>
     @endforeach
 </table>

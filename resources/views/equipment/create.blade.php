@@ -20,22 +20,26 @@
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
         </div>
-
         <div class="form-group">
-            <label for="type">Type</label>
-            <input type="text" class="form-control" id="type" name="type" value="{{ old('type') }}" required>
+            <label for="brand">Brand</label>
+            <input type="text" class="form-control" id="brand" name="brand" value="{{ old('brand') }}" required>
         </div>
-
+        <div class="form-group">
+            <label for="purchased_at">Purchased At</label>
+            <input type="date" class="form-control" id="purchased_at" name="purchased_at" value="{{ old('purchased_at') }}" required>
+        </div>
         <div class="form-group">
             <label for="price">Price</label>
             <input type="number" class="form-control" id="price" name="price" value="{{ old('price') }}">
         </div>
-
         <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
+            <label for="status">Status</label>
+            <input type="text" class="form-control" id="status" name="status" value="{{ old('status') }}">
         </div>
-
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea class="form-control" id="notes" name="notes">{{ old('notes') }}</textarea>
+        </div>
         <button type="submit" class="btn btn-primary">Add Equipment</button>
     </form>
 </div>
