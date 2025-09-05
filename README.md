@@ -8,13 +8,13 @@
 ## 進捗
 ### 一覧を表示する
 ~~~
-http://127.0.0.1/equioment
+http://127.0.0.1:8000/equioment
 ~~~
 で一覧にアクセスできます。
 <br>
 <br>
 ### 新規レコードを作成する
 ~~~
-http://127.0.0.1/equioment/create
+http://127.0.0.1:8000/equioment/create
 ~~~
 で新規レコードを作成できます。
