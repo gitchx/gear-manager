@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto p-4">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
     <h1 class="text-2xl font-bold mb-4">機材一覧</h1>
 
@@ -17,30 +17,35 @@
 
     {{-- 機材テーブル --}}
     <div class="overflow-x-auto">
-        <table class="table table-zebra w-full">
+        <table class="table table-zebra w-full text-sm sm:text-base">
+
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>名前</th>
+                    <!--
+                    <th>ID</th> 
+                    -->
                     <th>メーカー</th>
-                    <th>購入日</th>
-                    <th>価格</th>
-                    <th>状態</th>
-                    <th>メモ</th>
+                    <th>名前</th>
+                    <th class="hidden sm:table-cell">購入日</th>
+                    <th class="hidden sm:table-cell">価格</th>
+                    <th class="hidden sm:table-cell">状態</th>
+                    <th class="hidden sm:table-cell">メモ</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($equipment as $item)
                 <tr id="equipment-row-{{ $item->id }}">
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->name }}</td>
+                    <!--                     
+                    <td>{{ $item->id }}</td> 
+                    -->
                     <td>{{ $item->brand }}</td>
-                    <td>{{ $item->purchased_at }}</td>
-                    <td>{{ $item->price }}</td>
-                    <td>{{ $item->status }}</td>
-                    <td>{{ $item->notes }}</td>
-                    <td class="flex items-center gap-2">
+                    <td>{{ $item->name }}</td>
+                    <td class="hidden sm:table-cell">{{ $item->purchased_at }}</td>
+                    <td class="hidden sm:table-cell">{{ $item->price }}</td>
+                    <td class="hidden sm:table-cell">{{ $item->status }}</td>
+                    <td class="hidden sm:table-cell">{{ $item->notes }}</td>
+                    <td class="flex items-start gap-2">
                         {{-- 編集ボタン --}}
                         <a class="btn btn-sm btn-secondary" href="{{ route('equipment.edit', $item->id) }}">
                             編集
