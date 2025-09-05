@@ -1,24 +1,29 @@
 # Composer のステージ
 FROM composer:2 AS composer
 
-# PHP 8.2 FPM
+# PHP 8.2 FPM + Node.js（Vite ビルド用）
 FROM php:8.2-fpm
 
-# 必要な PHP 拡張
-RUN apt-get update && apt-get install -y libsqlite3-dev unzip git zip \
+# 必要な PHP 拡張 & Node.js
+RUN apt-get update && apt-get install -y \
+    libsqlite3-dev unzip git zip curl \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
     && docker-php-ext-install pdo pdo_sqlite
 
-# Composer インストール済みイメージなら不要
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+# Composer インストール
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 # 作業ディレクトリ
 WORKDIR /var/www/html
 
-# アプリコピー（事前に public/build は生成しておく）
+# アプリコピー
 COPY . .
 
-# Composer install（本番用）
-RUN composer install --no-dev --optimize-autoloader
+# Composer インストール + Vite ビルド
+RUN composer install --no-dev --optimize-autoloader \
+    && npm install \
+    && npm run build
 
 # 権限設定
 RUN chown -R www-data:www-data /var/www/html \
