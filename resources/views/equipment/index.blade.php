@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>機材一覧</h1>
-
+<button class="btn btn-primary" onclick="location.href='{{ route('equipment.create') }}'">新規作成</button>
 <table border="1">
     <tr>
         <th>ID</th>
