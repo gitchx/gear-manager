@@ -6,6 +6,8 @@ services:
     container_name: gear-manager-app
     ports:
       - "8000:8000"  # Laravel サーバー
+    volumes:
+      - .:/var/www/html
     environment:
       APP_ENV: production
       APP_DEBUG: false
