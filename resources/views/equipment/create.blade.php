@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>機材をリストに追加</h1>
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-6">機材をリストに追加</h1>
 
     @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
+        <div class="alert alert-error mb-6">
+            <ul class="list-disc list-inside">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -14,33 +14,54 @@
         </div>
     @endif
 
-    <form action="{{ route('equipment.store') }}" method="POST">
+    <form action="{{ route('equipment.store') }}" method="POST" class="space-y-4">
         @csrf
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+
+        <div class="form-control w-full">
+            <label class="label" for="name">
+                <span class="label-text">Name</span>
+            </label>
+            <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="機材名" class="input input-bordered w-full" required>
         </div>
-        <div class="form-group">
-            <label for="brand">Brand</label>
-            <input type="text" class="form-control" id="brand" name="brand" value="{{ old('brand') }}" required>
+
+        <div class="form-control w-full">
+            <label class="label" for="brand">
+                <span class="label-text">Brand</span>
+            </label>
+            <input type="text" id="brand" name="brand" value="{{ old('brand') }}" placeholder="メーカー名" class="input input-bordered w-full" required>
         </div>
-        <div class="form-group">
-            <label for="purchased_at">Purchased At</label>
-            <input type="date" class="form-control" id="purchased_at" name="purchased_at" value="{{ old('purchased_at') }}" required>
+
+        <div class="form-control w-full">
+            <label class="label" for="purchased_at">
+                <span class="label-text">Purchased At</span>
+            </label>
+            <input type="date" id="purchased_at" name="purchased_at" value="{{ old('purchased_at') }}" class="input input-bordered w-full" required>
         </div>
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" class="form-control" id="price" name="price" value="{{ old('price') }}">
+
+        <div class="form-control w-full">
+            <label class="label" for="price">
+                <span class="label-text">Price</span>
+            </label>
+            <input type="number" id="price" name="price" value="{{ old('price') }}" placeholder="価格" class="input input-bordered w-full">
         </div>
-        <div class="form-group">
-            <label for="status">Status</label>
-            <input type="text" class="form-control" id="status" name="status" value="{{ old('status') }}">
+
+        <div class="form-control w-full">
+            <label class="label" for="status">
+                <span class="label-text">Status</span>
+            </label>
+            <input type="text" id="status" name="status" value="{{ old('status') }}" placeholder="状態" class="input input-bordered w-full">
         </div>
-        <div class="form-group">
-            <label for="notes">Notes</label>
-            <textarea class="form-control" id="notes" name="notes">{{ old('notes') }}</textarea>
+
+        <div class="form-control w-full">
+            <label class="label" for="notes">
+                <span class="label-text">Notes</span>
+            </label>
+            <textarea id="notes" name="notes" placeholder="メモ" class="textarea textarea-bordered w-full">{{ old('notes') }}</textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Add Equipment</button>
+
+        <div class="form-control w-full mt-4">
+            <button type="submit" class="btn btn-primary">機材を追加</button>
+        </div>
     </form>
 </div>
 @endsection
