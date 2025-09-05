@@ -17,13 +17,12 @@ class EquipmentController extends Controller
         $equipment = Equipment::all();
         return view('equipment.index', compact('equipment'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('equipment.create');
     }
 
     /**
@@ -31,7 +30,19 @@ class EquipmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // バリデーション
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'price' => 'nullable|numeric',
+            'description' => 'nullable|string',
+        ]);
+
+        // データ保存
+        Equipment::create($validated);
+
+        // インデックスにリダイレクト
+        return redirect()->route('equipment.index')->with('success', 'Equipment created successfully.');
     }
 
     /**

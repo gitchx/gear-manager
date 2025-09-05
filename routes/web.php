@@ -8,3 +8,5 @@ Route::get('/', function () {
 });
 
 Route::resource('equipment', EquipmentController::class);
+Route::get('/equipment/create', [EquipmentController::class, 'create'])->name('equipment.create');
+Route::post('/equipment', [EquipmentController::class, 'store'])->name('equipment.store');
