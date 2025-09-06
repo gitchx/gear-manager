@@ -13,40 +13,54 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    # PHP セットアップ
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.4'
         extensions: mbstring, bcmath, pcntl
 
+    # Node.js セットアップ
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '20'
 
+    # pnpm インストール
+    - name: Setup pnpm
+      run: npm install -g pnpm
+
+    # .env のコピー
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-    - name: Install PHP Dependencies
+    # PHP 依存関係のインストール
+    - name: Install PHP dependencies
       run: composer install --prefer-dist --no-progress --no-interaction
 
-    - name: Install NPM Dependencies
-      run: npm ci
+    # Node / フロントエンド依存関係のインストール
+    - name: Install Node dependencies
+      run: pnpm install --frozen-lockfile
 
-    - name: Build Assets
-      run: npm run build
+    # Vite ビルド
+    - name: Build assets
+      run: pnpm run build
 
+    # Laravel アプリキー生成
     - name: Generate Laravel Key
       run: php artisan key:generate
 
+    # ディレクトリ権限設定
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
 
+    # SQLite データベース作成
     - name: Create Database
       run: |
         mkdir -p database
         touch database/database.sqlite
 
+    # Laravel テスト実行
     - name: Execute Laravel Tests
       env:
         DB_CONNECTION: sqlite
