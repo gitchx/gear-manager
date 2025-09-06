@@ -8,7 +8,6 @@ on:
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -20,13 +19,24 @@ jobs:
         php-version: '8.4'
         extensions: mbstring, bcmath, pcntl
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-    - name: Install Dependencies
+    - name: Install PHP Dependencies
       run: composer install --prefer-dist --no-progress --no-interaction
 
-    - name: Generate key
+    - name: Install NPM Dependencies
+      run: npm ci
+
+    - name: Build Assets
+      run: npm run build
+
+    - name: Generate Laravel Key
       run: php artisan key:generate
 
     - name: Directory Permissions
@@ -37,7 +47,7 @@ jobs:
         mkdir -p database
         touch database/database.sqlite
 
-    - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
+    - name: Execute Laravel Tests
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
