@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
 <div class="max-w-2xl mx-auto p-6 bg-base-100 rounded-lg shadow-md">
     <h1 class="text-2xl font-bold mb-6">機材をリストに追加</h1>
 
@@ -71,4 +69,4 @@
         </div>
     </form>
 </div>
-@endsection
+</x-app-layout>

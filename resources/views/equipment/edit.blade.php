@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
 <div class="max-w-2xl mx-auto p-6 bg-base-100 rounded-lg shadow-md">
     <h1 class="text-2xl font-bold mb-6">編集画面</h1>
 
@@ -69,4 +67,4 @@
         <button type="submit" class="btn btn-primary mt-4 w-full">更新</button>
     </form>
 </div>
-@endsection
+</x-app-layout>
