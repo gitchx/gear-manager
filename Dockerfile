@@ -1,7 +1,7 @@
 # ------------------------
 # ビルドステージ
 # ------------------------
-FROM php:8.2-fpm AS build
+FROM php:8.3-fpm AS build
 
 # 必要な PHP 拡張 & Node.js（ビルド用）
 RUN apt-get update && apt-get install -y \
