@@ -1,12 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EquipmentController;
 
-Route::get('/', function () {
-    return redirect()->route('equipment.index');
-});
+Route::view('/', 'welcome');
 
-Route::resource('equipment', EquipmentController::class);
-Route::get('/equipment/create', [EquipmentController::class, 'create'])->name('equipment.create');
-Route::post('/equipment', [EquipmentController::class, 'store'])->name('equipment.store');
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
+
+require __DIR__.'/auth.php';

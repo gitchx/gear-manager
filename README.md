@@ -1,11 +1,24 @@
 # 音楽などの機材を記録して管理するためのWebアプリケーションです。
 
 ## 技術スタック
-• PHP<br>
-• Laravel<br>
-• SQLite<br>
-• Tailwind CSS, daisyUI<br>
-• Docker/Podman(本番環境用)
+## 技術スタック
+
+- **バックエンド**
+  - PHP
+  - Laravel
+  - Laravel Breeze
+  - Livewire (Functional API) + Alpine.js
+
+- **データベース**
+  - SQLite
+
+- **フロントエンド**
+  - Tailwind CSS
+  - daisyUI
+
+- **開発・デプロイ**
+  - Docker / Podman（本番環境用）
+
 
 ## App URL
 ~~~
