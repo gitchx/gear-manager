@@ -12,6 +12,19 @@
         </button>
     </div>
 
+    {{-- カテゴリー絞り込み --}}
+    <form method="GET" class="mb-4 flex gap-2 items-center">
+        <select name="category" class="select select-bordered">
+            <option value="all" {{ request('category') === 'all' ? 'selected' : '' }}>すべてのカテゴリー</option>
+            @foreach($categories as $category)
+                <option value="{{ $category }}" {{ request('category') === $category ? 'selected' : '' }}>
+                    {{ $category }}
+                </option>
+            @endforeach
+        </select>
+        <button type="submit" class="btn btn-primary">絞り込む</button>
+    </form>
+
     {{-- アラート用コンテナ --}}
     <div id="alert-container" class="fixed top-4 right-4 z-50"></div>
 
@@ -21,6 +34,7 @@
 
             <thead>
                 <tr>
+                    <th class="w-1">カテゴリ</th>
                     <th>メーカー</th>
                     <th>名前</th>
                     <th>操作</th>
@@ -30,6 +44,7 @@
                 @foreach ($equipment as $item)
                 <!-- スマホ用メイン行 -->
                 <tr class="sm:hidden" id="equipment-row-{{ $item->id }}">
+                    <td>{{ $item->category }}</td>
                     <td>{{ $item->brand }}</td>
                     <td>{{ $item->name }}</td>
                     <td class="flex flex-col gap-2">

@@ -10,13 +10,24 @@ class EquipmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // カテゴリー一覧を取得（重複なし）
+        $categories = Equipment::select('category')->distinct()->pluck('category');
 
-        $equipment = Equipment::all();
-        return view('equipment.index', compact('equipment'));
+        // クエリビルダー
+        $query = Equipment::query();
+
+        // カテゴリー絞り込み（空なら全件表示）
+        if ($request->filled('category') && $request->category !== 'all') {
+            $query->where('category', $request->category);
+        }
+
+        $equipment = $query->get();
+
+        return view('equipment.index', compact('equipment', 'categories'));
     }
+
     /**
      * Show the form for creating a new resource.
      */
