@@ -8,6 +8,7 @@
   - Laravel
   - Laravel Breeze
   - Livewire (Functional API) + Alpine.js
+  - Pest
 
 - **データベース**
   - SQLite

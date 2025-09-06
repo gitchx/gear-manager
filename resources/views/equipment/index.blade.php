@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
     <h1 class="text-2xl font-bold mb-4 mt-3">機材一覧</h1>
@@ -137,4 +135,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-@endsection
+
+</x-layouts.app>
