@@ -10,6 +10,7 @@ class Equipment extends Model
     protected $fillable = [
         'name',
         'brand',
+        'category',
         'purchased_at',
         'price',
         'status',

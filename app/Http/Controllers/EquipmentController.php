@@ -74,7 +74,7 @@ class EquipmentController extends Controller
         ]);
 
         $equipment = Equipment::findOrFail($id);
-        $equipment->update($request->only(['name', 'brand', 'purchased_at', 'price', 'status', 'notes']));
+        $equipment->update($request->only(['name', 'brand', 'category', 'purchased_at', 'price', 'status', 'notes']));
 
         return redirect()->route('equipment.index')->with('success', '更新しました');
     }

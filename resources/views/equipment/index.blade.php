@@ -41,6 +41,7 @@
                 <tr id="details-{{ $item->id }}" class="hidden sm:hidden bg-gray-50">
                     <td colspan="3">
                         <div class="grid grid-cols-2 gap-2 p-2">
+                            <div><strong>カテゴリ:</strong> {{ $item->category }}</div>
                             <div><strong>購入日:</strong> {{ $item->purchased_at }}</div>
                             <div><strong>価格:</strong> {{ $item->price }}</div>
                             <div><strong>状態:</strong> {{ $item->status }}</div>

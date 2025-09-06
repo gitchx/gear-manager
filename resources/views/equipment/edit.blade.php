@@ -29,6 +29,16 @@
         </div>
 
         <div class="form-control w-full">
+            <label class="label" for="category">
+                <span class="label-text">Category</span>
+            </label>
+            <input type="text" id="category" name="category" value="{{ old('category', $equipment->category) }}" class="input input-bordered w-full">
+            @error('category')
+                <span class="text-error text-sm mt-1">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="form-control w-full">
             <label class="label" for="purchased_at">
                 <span class="label-text">Purchased At</span>
             </label>

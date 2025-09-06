@@ -32,6 +32,13 @@
         </div>
 
         <div class="form-control w-full">
+            <label class="label" for="category">
+                <span class="label-text">Category</span>
+            </label>
+            <input type="text" id="category" name="category" value="{{ old('category') }}" placeholder="カテゴリ" class="input input-bordered w-full">
+        </div>
+
+        <div class="form-control w-full">
             <label class="label" for="purchased_at">
                 <span class="label-text">Purchased At</span>
             </label>
