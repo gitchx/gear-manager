@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-app-layout>
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
     <h1 class="text-2xl font-bold mb-4 mt-3">機材一覧</h1>
@@ -136,4 +136,4 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-</x-layouts.app>
+</x-app-layout>
